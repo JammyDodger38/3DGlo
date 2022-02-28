@@ -1,7 +1,6 @@
 const modal = () => {
     const modal = document.querySelector('.popup')
     const buttons = document.querySelectorAll('.popup-btn')
-    const closeBtn = modal.querySelector('.popup-close')
     const widthScreen = window.screen.availWidth
 
     let count = 0
@@ -9,7 +8,7 @@ const modal = () => {
 
     const animation = () => {
         if (widthScreen >= 768) {
-            count += 0.02
+            count += 0.05
             idInterval = requestAnimationFrame(animation)
 
             if (count <= 1) {
@@ -30,10 +29,12 @@ const modal = () => {
         })
     })
 
-    closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none'
-        count = 0
-        modal.style.opacity = '0'
+    modal.addEventListener('click', (e) => {
+        if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+            modal.style.display = 'none'
+            count = 0
+            modal.style.opacity = '0'
+        }
     })
 }
 
