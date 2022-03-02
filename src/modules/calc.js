@@ -13,6 +13,7 @@ const calc = (price = 100) => {
         let totalValue = 0
         let calcCountValue = 1
         let calcDayValue = 1
+        let totalAnimation
 
         if (calcCount.value > 1) {
             calcCountValue += calcCount.value / 10
@@ -29,10 +30,61 @@ const calc = (price = 100) => {
         } else {
             totalValue = 0
         }
-        total.textContent = totalValue
+
+        if (totalValue > +total.textContent) {
+            const time = 100;
+            let step = 0;
+
+            function outNum(num) {
+                let n = +total.textContent;
+                let t = time / num;
+                step = Math.round(num / time)
+
+                let interval = setInterval(() => {
+                    n += step;
+                    if (n >= num) {
+                        clearInterval(interval);
+                        total.textContent = num
+                    } else {
+                        total.textContent = n
+                    }
+                }, t);
+            }
+
+            if(totalValue == 0) {
+                total.textContent = 0;
+            } else {
+                outNum(+totalValue);
+            }
+
+        } else if (totalValue < +total.textContent) {
+            const time = 100;
+            let step = 0;
+
+            function outNum(num) {
+                let n = +total.textContent;
+                let t = time / (n - num);
+                step = Math.round((n - num) / time)
+
+                let interval = setInterval(() => {
+                    n -= step;
+                    if (n <= num) {
+                        clearInterval(interval);
+                        total.textContent = num
+                    } else {
+                        total.textContent = n
+                    }
+                }, t);
+            }
+            if(totalValue == 0) {
+                total.textContent = 0;
+            } else {
+                outNum(+totalValue);
+            }
+        }
     }
 
-    calcBlock.addEventListener('input', (e) => {
+    calcBlock.addEventListener('change', (e) => {
         if(e.target === calcType || e.target === calcSquare || 
             e.target === calcCount || e.target === calcDay) {
             countCalc()
