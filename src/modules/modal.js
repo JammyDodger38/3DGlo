@@ -1,3 +1,5 @@
+import {animate} from './helpers'
+
 const modal = () => {
     const modal = document.querySelector('.popup')
     const buttons = document.querySelectorAll('.popup-btn')
@@ -6,26 +8,20 @@ const modal = () => {
     let count = 0
     let idInterval
 
-    const animation = () => {
-        if (widthScreen >= 768) {
-            count += 0.05
-            idInterval = requestAnimationFrame(animation)
-
-            if (count <= 1) {
-                modal.style.opacity = count
-            } else {
-                cancelAnimationFrame(idInterval)
-            }
-        } else {
-            modal.style.opacity = '1'
-        }
-        
-    }
+    
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             modal.style.display = 'block'
-            animation()
+            animate({
+                duration: 500,
+                timing(timeFraction) {
+                  return timeFraction;
+                },
+                draw(progress) {
+                    modal.style.opacity = progress
+                }
+            });
         })
     })
 
