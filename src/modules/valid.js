@@ -22,6 +22,15 @@ const valid = () => {
         ex.target.value = ex.target.value.replace(/^\-/, "")
         ex.target.value = ex.target.value.replace(/\-$/, "")
     }
+    const blurEmail = (e) => {
+        if (e.target.value != '') {
+            let result = e.target.value .toString().match(/^[a-z\d_+.\-]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+$/i)
+            if (result === null) {
+                alert('Вы ввели неправильный email')
+                e.target.value = ''
+            }
+        }
+    }
     
     form1Name.addEventListener('input', (e) => {
         e.target.value = e.target.value.replace(/[^А-Яа-я\s\-]+/g, "")
@@ -35,7 +44,7 @@ const valid = () => {
         e.target.value = e.target.value.replace(/[^A-Za-z0-9\@\-\_\.\!\`\*\']+/g, "")
     })
     form1Email.addEventListener('blur', (e) => {
-        blurInput(e)
+        blurEmail(e)
     })
 
     form1Phone.addEventListener('input', (e) => {
@@ -66,7 +75,7 @@ const valid = () => {
         e.target.value = e.target.value.replace(/[^A-Za-z0-9\@\-\_\.\!\`\*\']+/g, "")
     })
     form2Email.addEventListener('blur', (e) => {
-        blurInput(e)
+        blurEmail(e)
     })
 
     form2Phone.addEventListener('input', (e) => {
@@ -89,7 +98,7 @@ const valid = () => {
         e.target.value = e.target.value.replace(/[^A-Za-z0-9\@\-\_\.\!\`\*\']+/g, "")
     })
     form3Email.addEventListener('blur', (e) => {
-        blurInput(e)
+        blurEmail(e)
     })
 
     form3Phone.addEventListener('input', (e) => {
