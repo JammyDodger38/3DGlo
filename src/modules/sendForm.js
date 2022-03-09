@@ -58,6 +58,7 @@ const sendForm = ({formId, someElem = []}) => {
                     statusBlock.textContent = errorText
                 })
         } else {
+            statusBlock.textContent = errorText
             alert('Данные не валидны')
         }
     }
