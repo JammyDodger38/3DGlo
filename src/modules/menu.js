@@ -10,8 +10,10 @@ const menu = () => {
         if(menu.classList.contains('active-menu')) {
             if (e.target.closest('.active-menu')) {
                 if(e.target.classList.contains('close-btn')) {
+                    e.preventDefault()
                     handleMenu()
                 } else if (e.target.matches('ul>li>a')) {
+                    e.preventDefault()
                     handleMenu()
                 }
             } else {

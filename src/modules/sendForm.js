@@ -7,12 +7,14 @@ const sendForm = ({formId, someElem = []}) => {
 
     const validate = (list) => {
         let success = true
-        
+        if (list.user_name.length < 2 || list.user_email.length == 0 || list.user_phone.length < 5 || list.user_phone.length > 16) {
+            success = false
+        }
         return success
     }
 
-    const sendData = (data) => {
-        return fetch('https://jsonplaceholder.typicode.com/posts', {
+    const sendData = async (data) => {
+        return await fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -43,7 +45,7 @@ const sendForm = ({formId, someElem = []}) => {
             }
         })
 
-        if (validate(formElements)) {
+        if (validate(formBody)) {
             sendData(formBody)
                 .then(data => {
                     statusBlock.textContent = successText

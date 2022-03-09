@@ -29,6 +29,8 @@ const valid = () => {
                 alert('Вы ввели неправильный email')
                 e.target.value = ''
             }
+        } else {
+            alert('Вы ввели неправильный email')
         }
     }
     

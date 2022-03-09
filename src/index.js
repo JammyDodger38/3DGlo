@@ -7,7 +7,7 @@ import slider from './modules/slider'
 import calc from './modules/calc'
 import send from './modules/sendForm'
 
-timer('1 march 2022')
+timer('30 march 2022')
 menu()
 modal()
 valid()
