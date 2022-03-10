@@ -13,7 +13,6 @@ const menu = () => {
                     e.preventDefault()
                     handleMenu()
                 } else if (e.target.matches('ul>li>a')) {
-                    e.preventDefault()
                     handleMenu()
                 }
             } else {
